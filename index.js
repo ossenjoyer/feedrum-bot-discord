@@ -1,4 +1,5 @@
 const {Client, Events, Collection, GatewayIntentBits} = require("discord.js");
+const {connect} = require("mongoose");
 const {config} = require("dotenv");
 const path = require("path");
 const fs = require("fs");
@@ -24,6 +25,15 @@ for (commandFile of commandFiles) {
 
 bot.on(Events.ClientReady, c => {
 	console.log(`[INFO] bot loginned as ${c.user.tag}`);
+
+	try {
+		connect(process.env.MONGO_CONNECT_URL);
+		console.log("[INFO] bot connected to database");
+	} catch (e){
+		console.log("[ERROR] error ocured while connect to database:")
+		console.log(e);
+	}
+
 });
 
 bot.on(Events.InteractionCreate, async interaction => {
