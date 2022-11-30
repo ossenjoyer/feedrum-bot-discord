@@ -35,6 +35,16 @@ module.exports = {
 			reason = interaction.options.getString("feedback_reason"),
 			description = interaction.options.getString("description");
 
+		if (!title || !description)
+			return interaction.reply('cannot get title or description');
+
+		if (title.length < 6 || title.length > 16)
+			return interaction.reply('Your title so smally or longer');
+
+
+		if (description.length < 6 || description.length > 64)
+			return interaction.reply('Your title so smally or longer');
+
 		let feedback = new FeedbackModel({
 			FEEDBACK_AUTHOR: interaction.user.id,
 			FEEDBACK_TITLE: title,
@@ -45,11 +55,11 @@ module.exports = {
 		try {
 			let feedbackSaved = await feedback.save();
 			console.log("[INFO]\n" + feedbackSaved)
-			interaction.reply(`Feedback saved successfully`);
+			return interaction.reply(`Feedback saved successfully`);
 		} catch (e) {
 			console.log("[ERROR] cannot save feedback to database");
 			console.log(e)
-			interaction.reply(`Cannot save your feedback`);
+			return interaction.reply(`Cannot save your feedback`);
 		}
 	}
 
