@@ -58,7 +58,7 @@ module.exports = {
 
 				embedPage = await createFeedbackPageEmbed(feedback);
 
-				return await i.update({ embeds: [embedPage], components: [row] });
+				return await i.update({ embeds: [embedPage], components: [row], ephemeral: true });
 			}
 			else if (i.customId === 'right'){
 				pageId += 1;
