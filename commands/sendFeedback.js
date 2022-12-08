@@ -43,7 +43,7 @@ module.exports = {
 
 
 		if (description.length < 6 || description.length > 64)
-			return interaction.reply('Your title so smally or longer');
+			return interaction.reply('Your description so smally or longer');
 
 		let feedback = new FeedbackModel({
 			FEEDBACK_AUTHOR: interaction.user.id,
