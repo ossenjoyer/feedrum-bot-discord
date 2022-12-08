@@ -1,8 +1,15 @@
-const {Client, Events, Collection, GatewayIntentBits} = require("discord.js");
 const {connect} = require("mongoose");
 const {config} = require("dotenv");
 const path = require("path");
 const fs = require("fs");
+
+
+const {Client, 
+	Events, 
+	Collection, 
+	GatewayIntentBits, 
+	ActivityType
+} = require("discord.js");
 
 config();
 
@@ -26,6 +33,14 @@ for (commandFile of commandFiles) {
 bot.on(Events.ClientReady, c => {
 	console.log(`[INFO] bot loginned as ${c.user.tag}`);
 
+	let status = {
+		activities: [{
+			name: "when release",
+			type: ActivityType.Watching
+		}],
+		status: "idle"
+	}
+
 	try {
 		connect(process.env.MONGO_CONNECT_URL);
 		console.log("[INFO] bot connected to database");
@@ -33,6 +48,8 @@ bot.on(Events.ClientReady, c => {
 		console.log("[ERROR] error ocured while connect to database:")
 		console.log(e);
 	}
+
+	c.user.setPresence(status);
 
 });
 
