@@ -1,15 +1,19 @@
-const fetch = require("node-fetch-commonjs");
-const {Colors} = require("discord.js");
+import { Colors, APIEmbedField } from "discord.js";
 
+export interface Fetched {
+	color: number,
+	title: string,
+	fields: Array<APIEmbedField>
+}
 
-let fetchSomething = async (url) => {
+export default async function (url: URL): Promise<Fetched> {
 	try {
-		let response = await fetch(url);
+		const response = await fetch(url);
 
-		if (response.status == 200){
-			return { 
+		if (response?.status == 200) {
+			return {
 				color: Colors.Green,
-				title: "In site all okay",
+				title: "on site all okay",
 				fields: [
 					{name: "HTTP status", value: `\`${response.status}\``},
 					{name: "Response status text", value: `\`${response.statusText}\``, inline: true}
@@ -18,26 +22,21 @@ let fetchSomething = async (url) => {
 		} else {
 			return {
 				color: Colors.Red,
-				title: "Some error occured",
+				title: "on site some trubles",
 				fields: [
 					{name: "HTTP status", value: `\`${response.status}\``},
 					{name: "Response status text", value: `\`${response.statusText}\``, inline: true}
 				]
 			}
-
 		}
-	} catch (e) {
+	} catch (e: any) {
 		console.log(e);
 		return {
 			color: Colors.Red,
-			title: "Cannot get site",
+			title: "on site some trubles",
 			fields: [
-				{name: "Reason", value: e.message}
+				{name: "Error ocured", value: `\`${e.message}\``}
 			]
 		}
 	}
-}
-
-module.exports = {
-	fetchSomething: fetchSomething
 }
