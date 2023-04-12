@@ -6,7 +6,7 @@ export default {
 	name: "feedback",
 	description: "send feedback to us",
 	async execute (msg: Message) {
-		const args = msg.content.trim().split(" ").slice(1).join(" ").trim().split(",");
+		const args = msg.content.trim().split(" ").slice(1).join(" ").trim().split(",").filter(e => e != '');
 
 		let feedbackReasons = ["Response", "Bug", "Suggestion"]
 
