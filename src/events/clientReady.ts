@@ -8,7 +8,7 @@ export default function (client: Client) {
 	const activity: PresenceData = {
 		activities: [
 			{
-				name: "F@help | feedrum.com",
+				name: "!help | feedrum.com",
 				type: ActivityType.Watching
 			}
 		],
