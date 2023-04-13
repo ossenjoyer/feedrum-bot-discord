@@ -12,8 +12,6 @@ export interface Feedback {
 export default async function (msg: Message, feedback: Feedback) {
 	const attachments = Array.from(feedback?.attachments?.values());
 
-	console.log(attachments);
-
 	( bot.channels.cache.get("1095687707075805244") as TextChannel )
 		.send({
 			content: `Author: ${msg.author.tag}(${msg.author.id})\nTitle: ${feedback?.title}\nReason: ${feedback?.reason}\nDescription: ${feedback?.description}`, 
