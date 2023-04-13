@@ -8,6 +8,8 @@ export default {
 	async execute (msg: Message) {
 		const args = msg.content.trim().split(" ").slice(1).join(" ").trim().split(",").filter(e => e != '');
 
+		const description = args.slice(2,array.length).join(" ").trim();
+
 		let feedbackReasons = ["Response", "Bug", "Suggestion"]
 
 		if (args.length != 0) {
@@ -17,7 +19,7 @@ export default {
 			if (!(feedbackReasons.includes(args[1].trim())))
 				return msg.reply("invalid feedback reason (available `Response|Bug|Suggestion`)");
 
-			if (args[2].trim().length > 128 || args[2].trim().length < 12)
+			if (description.length > 128 || description.length < 12)
 				return msg.reply("invalid description length (12 minimum, 128 maximum)");
 
 			if (msg.attachments.size > 3)
@@ -26,7 +28,7 @@ export default {
 			let feedback: Feedback = {
 				title: args[0].trim(),
 				reason: args[1].trim(),
-				description: args[2].trim(),
+				description: description,
 				attachments: msg.attachments
 			}
 
