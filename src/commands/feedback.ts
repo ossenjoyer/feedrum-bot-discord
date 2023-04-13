@@ -8,7 +8,7 @@ export default {
 	async execute (msg: Message) {
 		const args = msg.content.trim().split(" ").slice(1).join(" ").trim().split(",").filter(e => e != '');
 
-		const description = args.slice(2,array.length).join(" ").trim();
+		const description = args.slice(2, args.length).join(" ").trim();
 
 		let feedbackReasons = ["Response", "Bug", "Suggestion"]
 
