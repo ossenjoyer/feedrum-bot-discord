@@ -6,7 +6,7 @@ export default {
 	name: "feedback",
 	description: "send feedback to us",
 	async execute (msg: Message) {
-		const args = msg.content.trim().split(" ").slice(1).join(" ").trim().split(",").filter(e => e != '');
+		const args = msg.content.trim().split(" ").slice(1).join(" ").trim().split(";").filter(e => e != '');
 
 		const description = args.slice(2, args.length).join(" ").trim();
 
@@ -36,7 +36,7 @@ export default {
 			
 			return msg.reply("feedback succesfully sended");
 		} else {
-			return msg.reply("Usage: \n```F@feedback title<string>, reason<Response|Bug|Suggestion>, description<string> attachments?[images]```")
+			return msg.reply("Usage: \n```F@feedback title<string>; reason<Response|Bug|Suggestion>; description<string> attachments?[images]```")
 		}
 	}
 }

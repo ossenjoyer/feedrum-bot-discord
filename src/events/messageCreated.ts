@@ -9,8 +9,8 @@ export default async function (message: Message) {
 
 	const command = message.content.split(" ")[0];
 
-	if (command.startsWith("F@")) {
-		const commandName = command.split("F@")[1];
+	if (command.startsWith("!")) {
+		const commandName = command.split("!")[1];
 		
 		const cmd = commands.get(commandName);
 
