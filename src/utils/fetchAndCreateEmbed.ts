@@ -13,19 +13,19 @@ export default async function (url: URL): Promise<Fetched> {
 		if (response?.status == 200) {
 			return {
 				color: Colors.Green,
-				title: "on site all okay",
+				title: "Website is working!",
 				fields: [
-					{name: "HTTP status", value: `\`${response.status}\``},
-					{name: "Response status text", value: `\`${response.statusText}\``, inline: true}
+					{name: "HTTP Status", value: `\`${response.status}\``},
+					{name: "Response", value: `\`${response.statusText}\``, inline: true}
 				]
 			}
 		} else {
 			return {
 				color: Colors.Red,
-				title: "on site some trubles",
+				title: "Website experiences some technical issues.",
 				fields: [
-					{name: "HTTP status", value: `\`${response.status}\``},
-					{name: "Response status text", value: `\`${response.statusText}\``, inline: true}
+					{name: "HTTP Status", value: `\`${response.status}\``},
+					{name: "Response", value: `\`${response.statusText}\``, inline: true}
 				]
 			}
 		}
@@ -33,9 +33,9 @@ export default async function (url: URL): Promise<Fetched> {
 		console.log(e);
 		return {
 			color: Colors.Red,
-			title: "on site some trubles",
+			title: "Website experiences some errors.",
 			fields: [
-				{name: "Error ocured", value: `\`${e.message}\``}
+				{name: "Error occurred", value: `\`${e.message}\``}
 			]
 		}
 	}

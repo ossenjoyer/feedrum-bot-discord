@@ -1,4 +1,4 @@
 # feedrum-bot-discord
-Discord bot, created for checking Feedrum status
+Discord bot, created to check Feedrum status
 
-Builded with using `discord.js`, `dotenv`, `fs` and `node-fetch-commonjs`
+Built using `discord.js`, `dotenv`, `fs` and `node-fetch-commonjs`
