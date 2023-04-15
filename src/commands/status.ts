@@ -9,7 +9,7 @@ import {
 
 export default {
 	name: "status",
-	description: "shows site status",
+	description: "Check website status",
 	async execute (msg: Message) {
 		const embed: Fetched = await fetchAndEmbed(new URL("https://feedrum.com"));
 

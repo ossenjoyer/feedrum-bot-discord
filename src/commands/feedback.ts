@@ -4,7 +4,7 @@ import { Message, Attachment, Collection } from "discord.js";
 
 export default {
 	name: "feedback",
-	description: "send feedback to us",
+	description: "Send feedback to us",
 	async execute (msg: Message) {
 		const args = msg.content.trim().split(" ").slice(1).join(" ").trim().split(";").filter(e => e != '');
 
@@ -14,16 +14,16 @@ export default {
 
 		if (args.length != 0) {
 			if (args[0].trim().length > 24 || args[0].trim().length < 6)
-				return msg.reply("invalid title length (6 mininum and 24 maximum)");
+				return msg.reply("Invalid title length (min. 6 characters; max. 24 characters).");
 
 			if (!(feedbackReasons.includes(args[1].trim())))
-				return msg.reply("invalid feedback reason (available `Response|Bug|Suggestion`)");
+				return msg.reply("Invalid feedback reason (use one of the following: `Response|Bug|Suggestion`).");
 
 			if (description.length > 128 || description.length < 12)
-				return msg.reply("invalid description length (12 minimum, 128 maximum)");
+				return msg.reply("Invalid description length (min. 12 characters; max. 128 characters).");
 
 			if (msg.attachments.size > 3)
-				return msg.reply("too much attachments (3 maximum)");
+				return msg.reply("Too much attachments (use up to 3 attachments).");
 
 			let feedback: Feedback = {
 				title: args[0].trim(),
@@ -34,7 +34,7 @@ export default {
 
 			sendFeedback(msg, feedback);
 			
-			return msg.reply("feedback succesfully sended");
+			return msg.reply("Feedback successfully sent.");
 		} else {
 			return msg.reply("Usage: \n```F@feedback title<string>; reason<Response|Bug|Suggestion>; description<string> attachments?[images]```")
 		}

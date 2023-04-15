@@ -10,7 +10,7 @@ interface HelpEmbed {
 
 export default {
 	name: "help",
-	description: "get help of commands",
+	description: "Display help for commands",
 	async execute (msg: Message) {
 		let helpEmbed: HelpEmbed = {
 			color: Colors.Green,
