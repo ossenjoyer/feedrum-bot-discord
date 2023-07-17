@@ -2,21 +2,17 @@ import events from "./events/";
 
 import { config } from "dotenv";
 
-import { 
-	Client,
-	Events,
-	GatewayIntentBits
-} from "discord.js";
+import { Client, Events, GatewayIntentBits } from "discord.js";
 
 config();
 
-export const bot: Client = new Client({ 
-	intents: [ 
-		GatewayIntentBits.Guilds,
-		GatewayIntentBits.GuildMessages,
-		GatewayIntentBits.MessageContent,
-		GatewayIntentBits.DirectMessages
-	] 
+export const bot: Client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.DirectMessages
+  ]
 });
 
 bot.on(Events.ClientReady, events.onClientReady);

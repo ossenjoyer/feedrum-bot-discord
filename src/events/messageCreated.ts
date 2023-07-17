@@ -1,21 +1,21 @@
-import { Message } from "discord.js"
+import { Message, Client } from "discord.js";
 
 import { getCommands } from "../commands";
 
 export default async function (message: Message) {
-	if (message.author.bot) return;
+  if (message.author.bot) return;
 
-	const commands = await getCommands();
+  const commands = await getCommands();
 
-	const command = message.content.split(" ")[0];
+  const command = message.content.split(" ")[0];
 
-	if (command.startsWith("!")) {
-		const commandName = command.split("!")[1];
-		
-		const cmd = commands.get(commandName);
+  if (command.startsWith("!")) {
+    const commandName = command.split("!")[1];
 
-		if (cmd != null || undefined) {
-			await cmd?.execute(message);
-		}
-	}
+    const cmd = commands.get(commandName);
+
+    if (cmd != null || undefined) {
+      await cmd?.execute(message);
+    }
+  }
 }
